@@ -189,6 +189,7 @@ def status_code(code):
     redirect = dict(headers=dict(location=REDIRECT_LOCATION))
 
     code_map = {
+        201: dict(headers={'Content-type': 'application/json'}, data="{\"id\": 1}\n"),
         301: redirect,
         302: redirect,
         303: redirect,
