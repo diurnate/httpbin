@@ -48,7 +48,7 @@ ENV_HEADERS = (
 )
 
 ROBOT_TXT = """User-agent: *
-Disallow: /deny
+Disallow: /
 """
 
 ANGRY_ASCII ="""
