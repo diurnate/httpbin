@@ -48,7 +48,7 @@ ENV_HEADERS = (
 )
 
 ROBOT_TXT = """User-agent: *
-Disallow: /deny
+Disallow: /
 """
 
 ANGRY_ASCII ="""
@@ -183,7 +183,7 @@ def get_dict(*keys, **extras):
     return out_d
 
 
-def status_code(code):
+def status_code(code, data=None):
     """Returns response object of given status code."""
 
     redirect = dict(headers=dict(location=REDIRECT_LOCATION))
@@ -216,13 +216,15 @@ def status_code(code):
     r.status_code = code
 
     if code in code_map:
-
         m = code_map[code]
-
         if 'data' in m:
             r.data = m['data']
         if 'headers' in m:
             r.headers = m['headers']
+
+    if data and not getattr(r, 'data', None):
+        r.data = str(data)
+        r.headers['Content-Type'] = "application/json"
 
     return r
 
