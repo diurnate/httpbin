@@ -261,7 +261,6 @@ def view_status_code(codes):
             code, weight = choice.split(':')
 
         choices.append((int(code), float(weight)))
-    import pdb; pdb.set_trace()
 
     code = weighted_choice(choices)
     return status_code(code, data=data)
