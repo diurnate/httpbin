@@ -244,10 +244,18 @@ def stream_n_messages(n):
 @app.route('/status/<codes>', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'TRACE'])
 def view_status_code(codes):
     """Return status code or random status code if more than one are given"""
-
+    print("View status code")
+    data=None
+    print(request)
+    print(request.values)
+    if request.args:
+        data = request.args.get('data')
+    elif request.form:
+        print(request.form)
+        data = request.form
     if not ',' in codes:
         code = int(codes)
-        return status_code(code)
+        return status_code(code, data=data)
 
     choices = []
     for choice in codes.split(','):
@@ -260,8 +268,7 @@ def view_status_code(codes):
         choices.append((int(code), float(weight)))
 
     code = weighted_choice(choices)
-
-    return status_code(code)
+    return status_code(code, data=data)
 
 
 @app.route('/response-headers')
