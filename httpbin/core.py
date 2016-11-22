@@ -246,6 +246,7 @@ def view_status_code(codes):
     """Return status code or random status code if more than one are given"""
     print("View status code")
     data=None
+    print(request.values)
     if request.args:
         data = request.args.get('data')
     elif request.form:
