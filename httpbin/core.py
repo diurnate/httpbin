@@ -249,6 +249,7 @@ def view_status_code(codes):
     if request.args:
         data = request.args.get('data')
     elif request.form:
+        print(request.form)
         data = request.form
     if not ',' in codes:
         code = int(codes)
