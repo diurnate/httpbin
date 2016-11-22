@@ -244,7 +244,7 @@ def stream_n_messages(n):
 @app.route('/status/<codes>', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'TRACE'])
 def view_status_code(codes):
     """Return status code or random status code if more than one are given"""
-
+    print("View status code")
     data=None
     if request.args:
         data = request.args.get('data')
